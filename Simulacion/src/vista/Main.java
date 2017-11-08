@@ -1,22 +1,14 @@
 package vista;
 
-import java.util.ArrayList;
-import logica.Metodos;
+import logica.Simulacion;
 
 public class Main {
 
     public static void main(String arg[]) {
         
-        Metodos me = new Metodos();
+        Simulacion simulacion = new Simulacion(5, 20000, 600, 100, 5, 127, 11, 100003, 200, 100);
         
-        ArrayList numerosAleatorios = me.numerosAleatorios(5, 127, 11, 100003);
-        
-        ArrayList generar_normales = me.numeros_normales(numerosAleatorios);
-        
-        ArrayList variables_normales = me.variables_normales(600, 100, generar_normales);
-        
-        System.out.println(variables_normales);
-        
+        simulacion.simular();
     }
 
 }
