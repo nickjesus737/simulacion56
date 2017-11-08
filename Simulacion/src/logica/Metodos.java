@@ -49,22 +49,21 @@ public class Metodos {
 
         return numerosNormales;
     }
-    
-    public ArrayList<Integer> variables_normales(double media, double desviacion, ArrayList<Double> numerosNormales){
-        
-        ArrayList<Integer> variableNormal = new ArrayList<>();
-        
-        for (int i = 0; i < numerosNormales.size(); i++){
-           int var = (int) (media + desviacion * numerosNormales.get(i));
-           variableNormal.add(var);
+
+    public ArrayList<Double> variables_normales(double media, double desviacion, ArrayList<Double> numerosNormales) {
+
+        ArrayList<Double> variableNormal = new ArrayList<>();
+
+        for (int i = 0; i < numerosNormales.size(); i++) {
+            variableNormal.add(redondear(media + desviacion * numerosNormales.get(i), 2));
         }
-        
+
         return variableNormal;
     }
-    
+
     //metodo para redondear numeros double a dos decimales
-    public double redondear (double decimal, int escala){
-        
+    public double redondear(double decimal, int escala) {
+
         BigDecimal bd = new BigDecimal(decimal).setScale(escala, RoundingMode.HALF_UP);
 
         return Double.parseDouble(bd.toString());
