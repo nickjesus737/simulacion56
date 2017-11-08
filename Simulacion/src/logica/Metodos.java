@@ -1,5 +1,7 @@
 package logica;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class Metodos {
@@ -58,6 +60,14 @@ public class Metodos {
         }
         
         return variableNormal;
+    }
+    
+    //metodo para redondear numeros double a dos decimales
+    public double redondear (double decimal, int escala){
+        
+        BigDecimal bd = new BigDecimal(decimal).setScale(escala, RoundingMode.HALF_UP);
+
+        return Double.parseDouble(bd.toString());
     }
 
 }
