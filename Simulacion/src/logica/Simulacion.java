@@ -18,6 +18,9 @@ public class Simulacion {
     int posicionVariableAleatoria;
     int tiempoSimulacion;
     int numeroCorridas;
+    
+    double reduccion = 0.1;
+    int escala = 1;
 
     public Simulacion(int numeroCorridas, int tiempoSimulacion, double media, double desviacion, int x, int a, int c, int m, double costoComponente, double costoDesconexion) {
         metodos = new Metodos();
@@ -54,10 +57,10 @@ public class Simulacion {
     }
 
     public void reduceHorasVida() {
-        this.componente1 -= 0.01;
-        this.componente2 -= 0.01;
-        this.componente3 -= 0.01;
-        this.componente4 -= 0.01;
+        this.componente1 -= reduccion;
+        this.componente2 -= reduccion;
+        this.componente3 -= reduccion;
+        this.componente4 -= reduccion;
     }
 
     public double primeraPolitica() {
@@ -68,9 +71,9 @@ public class Simulacion {
         //Se le asigna a cada componente un tiempo de vida
         asignaNumeroHorasVida();
 
-        for (double i = 0; i < this.tiempoSimulacion; i += 0.01) {
+        for (double i = 0; i < this.tiempoSimulacion; i += reduccion) {
 
-            if (metodos.redondear(this.componente1, 2) == 0.00) {
+            if (metodos.redondear(this.componente1, escala) == 0) {
 
                 contCostos++;
                 contDesconexion++;
@@ -78,10 +81,10 @@ public class Simulacion {
                 posicionVariableAleatoria++;
                 i++;
             } else {
-                this.componente1 -= 0.01;
+                this.componente1 -= reduccion;
             }
 
-            if (metodos.redondear(this.componente2, 2) == 0.00) {
+            if (metodos.redondear(this.componente2, escala) == 0) {
 
                 contCostos++;
                 contDesconexion++;
@@ -90,10 +93,10 @@ public class Simulacion {
                 i++;
 
             } else {
-                this.componente2 -= 0.01;
+                this.componente2 -= reduccion;
             }
 
-            if (metodos.redondear(this.componente3, 2) == 0.00) {
+            if (metodos.redondear(this.componente3, escala) == 0) {
 
                 contCostos++;
                 contDesconexion++;
@@ -101,10 +104,10 @@ public class Simulacion {
                 posicionVariableAleatoria++;
                 i++;
             } else {
-                this.componente3 -= 0.01;
+                this.componente3 -= reduccion;
             }
 
-            if (metodos.redondear(this.componente4, 2) == 0.00) {
+            if (metodos.redondear(this.componente4, escala) == 0) {
 
                 contCostos++;
                 contDesconexion++;
@@ -112,7 +115,7 @@ public class Simulacion {
                 posicionVariableAleatoria++;
                 i++;
             } else {
-                this.componente4 -= 0.01;
+                this.componente4 -= reduccion;
             }
 
         }
@@ -129,9 +132,9 @@ public class Simulacion {
         //Se le asigna a cada componente un tiempo de vida
         asignaNumeroHorasVida();
 
-        for (double i = 0; i < this.tiempoSimulacion; i += 0.01) {
+        for (double i = 0; i < this.tiempoSimulacion; i += reduccion) {
 
-            if ((metodos.redondear(this.componente1, 2) == 0.00) || (metodos.redondear(this.componente2, 2) == 0.00) || (metodos.redondear(this.componente3, 2) == 0.00) || (metodos.redondear(this.componente4, 2) == 0.00)) {
+            if ((metodos.redondear(this.componente1, escala) == 0) || (metodos.redondear(this.componente2, escala) == 0) || (metodos.redondear(this.componente3, escala) == 0) || (metodos.redondear(this.componente4, escala) == 0)) {
                 contCostos += 4;
                 contDesconexion += 2;
                 asignaNumeroHorasVida();
